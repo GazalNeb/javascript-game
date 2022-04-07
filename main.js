@@ -21,6 +21,7 @@ let gameStatesArray = [];
 
 //method for assigning value to globalArray and display on click of a button 
 
+
 //method for changing move order
 changeMoveOrder = () => {
   if (moveOrder == "X") {
@@ -42,11 +43,17 @@ storeGameState = () => {
 setEndGameValues = () => {
   globalArray = ["", "", "", "", "", "", "", "", ""];
   console.log(globalArray);
+  nextGamebutton.style.display = "block";
+}
+
+
+handleNextGameButton = () => {
   buttons.forEach(button => {
     button.innerHTML = "";
+    nextGamebutton.style.display = "none";
   })
-
 }
+
 //method for checking winner
 checkWinner = () => {
   for (i = 0; i < winnerCombinationsArray.length; i++) {
@@ -62,6 +69,9 @@ checkWinner = () => {
 const buttons = document.querySelectorAll(".button");
 console.log(buttons);
 
+const nextGamebutton = document.querySelector(".next-game-button");
+nextGamebutton.style.display = "none";
+
 buttons.forEach(button => {
   button.addEventListener("click", (event) => {
     console.log(button);
@@ -75,3 +85,5 @@ buttons.forEach(button => {
     checkWinner();
   })
 })
+
+nextGamebutton.addEventListener("click", handleNextGameButton)

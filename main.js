@@ -138,7 +138,8 @@ buttons.forEach(button => {
     console.log(event);
     console.log(button.value);
     console.log(moveOrder);
-    if (event.target.innerHTML == "") {
+    if (event.target.innerHTML == "" && winner == false) //winner == false is added to prevent the next steps when a winner is already found.
+     {
       event.target.innerHTML = moveOrder;
       globalArray[button.value] = moveOrder;
       checkWinner();

@@ -16,10 +16,12 @@ let winnerCombinationsArray = [
   [0, 4, 8],
   [2, 4, 6]
 ];
+
+// a variable to save the single winner combination array that wins
+let winnerCombination = [];
+
 // an array to save the final globalArray state after each game
 let gameStatesArray = [];
-
-//method for assigning value to globalArray and display on click of a button 
 
 
 //method for changing move order
@@ -35,23 +37,41 @@ changeMoveOrder = () => {
 storeGameState = () => {
     gameStatesArray[gameStatesArray.length] = globalArray.splice(0, 8);
     console.log(gameStatesArray);
+    // highlightWinnerCombination();
     setEndGameValues();
   }
 
-
-//method for setting final values of the global 
-setEndGameValues = () => {
-  globalArray = ["", "", "", "", "", "", "", "", ""];
-  console.log(globalArray);
-  nextGamebutton.style.display = "block";
+//method for highlighting winner combination
+highlightWinnerCombination = () => {
+  for (i=0; i = winnerCombination.length; i++) {
+    buttons[winnerCombination[i]].classList.add("button--winner");
+  }
 }
 
 
+//method for setting final values of the globalArray and displaying nextGameButton 
+setEndGameValues = () => {
+  globalArray = ["", "", "", "", "", "", "", "", ""];
+  console.log(globalArray);
+  nextGamebutton.classList.remove("next-game-button--disappear");
+  // nextGamebutton.style.display = "block";
+
+}
+
+//method for when nextGameButton is clicked
 handleNextGameButton = () => {
   buttons.forEach(button => {
     button.innerHTML = "";
-    nextGamebutton.style.display = "none";
+    nextGamebutton.classList.add("next-game-button--disappear");
+    // nextGamebutton.style.display = "none";
   })
+}
+
+//method for checking game end if there is no winner
+const checkGameEnd = () => {
+  if (globalArray.includes(!"")) {
+    setEndGameValues();
+  }
 }
 
 //method for checking winner
@@ -59,8 +79,9 @@ checkWinner = () => {
   for (i = 0; i < winnerCombinationsArray.length; i++) {
     if (globalArray[winnerCombinationsArray[i][0]] == globalArray[winnerCombinationsArray[i][1]] && globalArray[winnerCombinationsArray[i][0]] == globalArray[winnerCombinationsArray[i][2]] && globalArray[winnerCombinationsArray[i][0]] != "") {
       console.log(winnerCombinationsArray[i]);
+      winnerCombination = winnerCombinationsArray[i].splice(0,2);
       storeGameState();
-      return winnerCombinationsArray[i];
+      // return winnerCombinationsArray[i];
     }
     else {
       checkGameEnd();
@@ -68,17 +89,11 @@ checkWinner = () => {
   }
 }
 
-const checkGameEnd = () => {
-  if (globalArray.includes(!"")) {
-    setEndGameValues();
-  }
-}
-
 const buttons = document.querySelectorAll(".button");
 console.log(buttons);
 
 const nextGamebutton = document.querySelector(".next-game-button");
-nextGamebutton.style.display = "none";
+nextGamebutton.classList.add("next-game-button--disappear");
 
 buttons.forEach(button => {
   button.addEventListener("click", (event) => {

@@ -19,6 +19,14 @@ let winnerCombinationsArray = [
 // a variable to document if there is a winner
 let winner = false;
 
+//a variable for game count
+let gameCount = 0;
+
+//
+let player1Wins = 0; 
+let player2Wins = 0; 
+let drawCount = 0;
+
 // a variable to save the single winner combination array that wins
 let winnerCombination = [];
 
@@ -36,10 +44,24 @@ changeMoveOrder = () => {
 }
 //method for when there is a winner
 handleWinner = () => {
+  checkGameCount();
   highlightWinnerCombination();
   makeNextGameButtonAppear();
   // storeGameState()
 }
+
+checkGameCount = () => {
+  if (moveOrder == "X" && winner == true) {
+    player1Wins += 1;
+  } else if (moveOrder == "O" && winner == true) {
+    player2Wins += 1;
+  } else {
+    drawCount += 1;
+  }
+  gameCount = player1Wins + player2Wins + drawCount;
+  console.log(player1Wins, player2Wins, drawCount, gameCount);
+}
+
 //method for storing game state after a win
 storeGameState = () => {
     gameStatesArray[gameStatesArray.length] = globalArray.slice();
@@ -79,6 +101,7 @@ const checkGameEnd = () => {
   console.log(globalArray);
   if (!globalArray.includes("")) {
     console.log("pass");
+    checkGameCount();
     makeNextGameButtonAppear();
   }
 }
@@ -98,6 +121,7 @@ checkWinner = () => {
   }
   if (winner == true) {
     handleWinner();
+    return;
   }
     checkGameEnd();
 }
@@ -117,8 +141,8 @@ buttons.forEach(button => {
     if (event.target.innerHTML == "") {
       event.target.innerHTML = moveOrder;
       globalArray[button.value] = moveOrder;
-      changeMoveOrder();
       checkWinner();
+      changeMoveOrder();
     } //this if statement is to ensure that only empty buttons get assigned innerHTML value
   })
 })

@@ -17,10 +17,11 @@ let winnerCombinationsArray = [
   [2, 4, 6]
 ];
 // an array to save the final globalArray state after each game
-let gameStatesArray = [];
+let gameStatesArray = [""];
 
 //method for assigning value to globalArray and display on click of a button 
 
+//method for changing move order
 changeMoveOrder = () => {
   if (moveOrder == "X") {
     moveOrder = "O";
@@ -29,8 +30,20 @@ changeMoveOrder = () => {
   }
 }
 
+//method for storing game state after a win
+storeGameState = () => {
+  console.log(gameStatesArray);
+  for (i = 0; i < gameStatesArray.length; i++) {
+    gameStatesArray[i] = globalArray.splice(0, 8);
+    console.log(gameStatesArray);
+    setEndGameValues();
+  }
+}
+
+//method for setting final values of the global 
 setEndGameValues = () => {
   globalArray = ["", "", "", "", "", "", "", "", ""];
+  console.log(globalArray);
   buttons.forEach(button => {
     button.innerHTML = "";
   })
@@ -47,13 +60,7 @@ checkWinner = () => {
   }
 }
 
-storeGameState = () => {
-  for (i = 0; i < gameStatesArray.length; i++) {
-    gameStatesArray[i] = globalArray.splice();
-    console.log(gameStatesArray);
-    setEndGameValues();
-  }
-}
+
 const buttons = document.querySelectorAll(".button");
 console.log(buttons);
 

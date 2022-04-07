@@ -7,8 +7,12 @@
 .container {
   margin: 10rem auto;
   width: 45rem;
-  height: 40rem;
-  border: 2px solid green;
+  height: 45rem;
+  border: 2px solid #4B4747;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+}
+.container .button {
+  font-size: 10rem;
+  border: 2px solid #4B4747;
 }

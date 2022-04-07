@@ -1,12 +1,13 @@
 .container {
   margin: 10rem auto;
   width: 45rem;
-  height: 40rem;
-  border: 2px solid green;
+  height: 45rem;
+  border: 2px solid $color-secondary;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
 
   .button {
-
+   font-size: 10rem;
+   border: 2px solid $color-secondary;
   }
 }

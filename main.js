@@ -62,9 +62,17 @@ checkWinner = () => {
       storeGameState();
       return winnerCombinationsArray[i];
     }
+    else {
+      checkGameEnd();
+    }
   }
 }
 
+const checkGameEnd = () => {
+  if (globalArray.includes(!"")) {
+    setEndGameValues();
+  }
+}
 
 const buttons = document.querySelectorAll(".button");
 console.log(buttons);
@@ -77,12 +85,13 @@ buttons.forEach(button => {
     console.log(button);
     console.log(event);
     console.log(button.value);
-    globalArray[button.value] = moveOrder;
+    console.log(moveOrder);
     if (event.target.innerHTML == "") {
       event.target.innerHTML = moveOrder;
-    }
-    changeMoveOrder();
-    checkWinner();
+      globalArray[button.value] = moveOrder;
+      changeMoveOrder();
+      checkWinner();
+    } //this if statement is to ensure that only empty buttons get assigned innerHTML value
   })
 })
 

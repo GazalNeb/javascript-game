@@ -35,7 +35,7 @@ let gameStatesArray = [];
 
 
 //method for changing move order
-changeMoveOrder = () => {
+const changeMoveOrder = () => {
   if (moveOrder == "X") {
     moveOrder = "O";
   } else if (moveOrder == "O") {
@@ -43,14 +43,14 @@ changeMoveOrder = () => {
   }
 }
 //method for when there is a winner
-handleWinner = () => {
+const handleWinner = () => {
   checkGameCount();
   highlightWinnerCombination();
   makeNextGameButtonAppear();
-  // storeGameState()
+  storeGameState()
 }
 
-checkGameCount = () => {
+const checkGameCount = () => {
   if (moveOrder == "X" && winner == true) {
     player1Wins += 1;
   } else if (moveOrder == "O" && winner == true) {
@@ -63,13 +63,13 @@ checkGameCount = () => {
 }
 
 //method for storing game state after a win
-storeGameState = () => {
+const storeGameState = () => {
     gameStatesArray[gameStatesArray.length] = globalArray.slice();
     console.log(gameStatesArray);
   }
 
 //method for highlighting winner combination
-highlightWinnerCombination = () => {
+const highlightWinnerCombination = () => {
   for (i=0; i < winnerCombination.length; i++) {
     buttons[winnerCombination[i]].classList.add("button--winner");
   }
@@ -77,13 +77,13 @@ highlightWinnerCombination = () => {
 
 
 //method for setting final values of the globalArray and displaying nextGameButton 
-makeNextGameButtonAppear = () => {
+const makeNextGameButtonAppear = () => {
   nextGamebutton.classList.remove("next-game-button--disappear");
   // nextGamebutton.style.display = "block";
 }
 
 //method for when nextGameButton is clicked
-handleNextGameButton = () => {
+const handleNextGameButton = () => {
   globalArray = ["", "", "", "", "", "", "", "", ""];
   winner = false;
   winnerCombination = [];
@@ -107,7 +107,7 @@ const checkGameEnd = () => {
 }
 
 //method for checking winner
-checkWinner = () => {
+const checkWinner = () => {
   console.log("winner start" );
   for (i = 0; i < winnerCombinationsArray.length; i++) {
     if (globalArray[winnerCombinationsArray[i][0]] == globalArray[winnerCombinationsArray[i][1]] && globalArray[winnerCombinationsArray[i][0]] == globalArray[winnerCombinationsArray[i][2]] && globalArray[winnerCombinationsArray[i][0]] != "") {

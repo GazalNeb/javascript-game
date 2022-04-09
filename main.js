@@ -1,4 +1,4 @@
-//a global array, which holds 9 values for each position/button in the grid.
+//a global array, which holds 9 values for each position/button in the main-grid.
 
 let globalArray = ["", "", "", "", "", "", "", "", ""]
 
@@ -16,22 +16,31 @@ let winnerCombinationsArray = [
   [0, 4, 8],
   [2, 4, 6]
 ];
-// a variable to document if there is a winner
+// a boolean variable to document if there is a winner
 let winner = false;
 
-//a variable for game count
+//variables for game count, player wins, and draw count
 let gameCount = 0;
-
-//
 let player1Wins = 0; 
 let player2Wins = 0; 
 let drawCount = 0;
 
-// a variable to save the single winner combination array that wins
+// a variable to save the single winner combination array that wins in a game
 let winnerCombination = [];
 
-// an array to save the final globalArray state after each game
+// an array to save the final globalArray state after each game; this is done to facilitate return to previous games
 let gameStatesArray = [];
+
+
+const buttons = document.querySelectorAll(".container_button");
+console.log(buttons);
+
+const nextGamebutton = document.querySelector(".next-game-button");
+nextGamebutton.classList.add("next-game-button--disappear"); //this ensure the button is not visible at the beginning of the game.
+
+const player1WinsButton = document.querySelector(".P1-score");
+const player2WinsButton = document.querySelector(".P2-score");
+const drawButton = document.querySelector(".draw-score");
 
 
 //method for changing move order
@@ -47,9 +56,10 @@ const handleWinner = () => {
   checkGameCount();
   highlightWinnerCombination();
   makeNextGameButtonAppear();
-  storeGameState()
+  storeGameState();
 }
 
+//method for checking player wins and number of games.
 const checkGameCount = () => {
   if (moveOrder == "X" && winner == true) {
     player1Wins += 1;
@@ -60,9 +70,12 @@ const checkGameCount = () => {
   }
   gameCount = player1Wins + player2Wins + drawCount;
   console.log(player1Wins, player2Wins, drawCount, gameCount);
+  player1WinsButton.innerHTML = `${player1Wins}`;
+  player2WinsButton.innerHTML = `${player2Wins}`;
+  drawButton.innerHTML = `${drawCount}`; //this displays the score on the page
 }
 
-//method for storing game state after a win
+//method for storing the game-state after a win
 const storeGameState = () => {
     gameStatesArray[gameStatesArray.length] = globalArray.slice();
     console.log(gameStatesArray);
@@ -71,18 +84,18 @@ const storeGameState = () => {
 //method for highlighting winner combination
 const highlightWinnerCombination = () => {
   for (i=0; i < winnerCombination.length; i++) {
-    buttons[winnerCombination[i]].classList.add("button--winner");
-  }
+    buttons[winnerCombination[i]].classList.add("container_button--winner");
+  } 
 }
 
 
-//method for setting final values of the globalArray and displaying nextGameButton 
+//method for displaying nextGameButton 
 const makeNextGameButtonAppear = () => {
   nextGamebutton.classList.remove("next-game-button--disappear");
   // nextGamebutton.style.display = "block";
 }
 
-//method for when nextGameButton is clicked
+//method for when nextGameButton is clicked; it resets global variables, makes the grid buttons empty, and removes the nextGameButton display. 
 const handleNextGameButton = () => {
   globalArray = ["", "", "", "", "", "", "", "", ""];
   winner = false;
@@ -91,12 +104,12 @@ const handleNextGameButton = () => {
   buttons.forEach(button => {
     button.innerHTML = "";
     // nextGamebutton.style.display = "none";
-    button.classList.remove("button--winner");
+    button.classList.remove("container_button--winner");
   })
   nextGamebutton.classList.add("next-game-button--disappear");
 }
 
-//method for checking game end if there is no winner
+//method for checking the game-end if there is no winner.
 const checkGameEnd = () => {
   console.log(globalArray);
   if (!globalArray.includes("")) {
@@ -126,11 +139,6 @@ const checkWinner = () => {
     checkGameEnd();
 }
 
-const buttons = document.querySelectorAll(".button");
-console.log(buttons);
-
-const nextGamebutton = document.querySelector(".next-game-button");
-nextGamebutton.classList.add("next-game-button--disappear");
 
 buttons.forEach(button => {
   button.addEventListener("click", (event) => {
@@ -149,3 +157,4 @@ buttons.forEach(button => {
 })
 
 nextGamebutton.addEventListener("click", handleNextGameButton)
+

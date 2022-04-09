@@ -9,16 +9,26 @@
   &_section {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-evenly;
     height: 100%;
-    width: 33%
+    width: 30%;
 
-    &_button {
-      height: 5rem;
+    &_heading {
+      text-align: center;
+      font-family: $font-primary;
+      font-size: 1.5rem;
+      color: $color-secondary;
+    }
+
+    &_score {
+      height: 3rem;
+      text-align: center;
+      font-family: $font-primary;
+      font-size: 1.5rem;
+      color: $color-secondary;
     }
   }
 }
-
 
 .container {
   margin: 3rem auto;
@@ -31,7 +41,7 @@
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
 
-  .button {
+  &_button {
     //  width: 15rem;
     //  height: 15rem;
     font-size: 8rem;
@@ -41,8 +51,7 @@
   }
 }
 
-
-.button--winner {
+.container_button--winner {
   background-color: green;
 }
 

@@ -15,10 +15,22 @@
 .score-count_section {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-evenly;
   height: 100%;
-  width: 33% .score-count_section _button;
-  width-height: 5rem;
+  width: 30%;
+}
+.score-count_section_heading {
+  text-align: center;
+  font-family: "sans-serif";
+  font-size: 1.5rem;
+  color: #4B4747;
+}
+.score-count_section_score {
+  height: 3rem;
+  text-align: center;
+  font-family: "sans-serif";
+  font-size: 1.5rem;
+  color: #4B4747;
 }
 
 .container {
@@ -30,13 +42,13 @@
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
 }
-.container .button {
+.container_button {
   font-size: 8rem;
   border: 2px solid #4B4747;
   margin: 0;
 }
 
-.button--winner {
+.container_button--winner {
   background-color: green;
 }
 

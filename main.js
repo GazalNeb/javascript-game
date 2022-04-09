@@ -25,12 +25,16 @@ let player1Wins = 0;
 let player2Wins = 0; 
 let drawCount = 0;
 
+//variable for current game index
+let currentGameIndex = 0;
+
 // a variable to save the single winner combination array that wins in a game
 let winnerCombination = [];
 
 // an array to save the final globalArray state after each game; this is done to facilitate return to previous games
 let gameStatesArray = [];
 
+let previousGameWinnerCombinations = [];
 
 const buttons = document.querySelectorAll(".container_button");
 console.log(buttons);
@@ -41,6 +45,9 @@ nextGamebutton.classList.add("next-game-button--disappear"); //this ensure the b
 const player1WinsButton = document.querySelector(".P1-score");
 const player2WinsButton = document.querySelector(".P2-score");
 const drawButton = document.querySelector(".draw-score");
+
+const previousGameStateButton = document.querySelector(".game-state_previous");
+const nextGameStateButton = document.querySelector(".game-state_next");
 
 
 //method for changing move order
@@ -106,16 +113,18 @@ const handleNextGameButton = () => {
     // nextGamebutton.style.display = "none";
     button.classList.remove("container_button--winner");
   })
+  currentGameIndex += 1;
   nextGamebutton.classList.add("next-game-button--disappear");
 }
 
 //method for checking the game-end if there is no winner.
 const checkGameEnd = () => {
-  console.log(globalArray);
+  // console.log(globalArray);
   if (!globalArray.includes("")) {
     console.log("pass");
     checkGameCount();
     makeNextGameButtonAppear();
+    storeGameState();
   }
 }
 
@@ -139,6 +148,27 @@ const checkWinner = () => {
     checkGameEnd();
 }
 
+const handlePreviousGameStateButton = () => {
+  console.log(buttons.length);
+  for (i=0; i<buttons.length; i++) {
+    console.log("previous Button");
+    console.log(gameStatesArray[currentGameIndex-1][i]);
+    buttons[i].innerHTML = gameStatesArray[currentGameIndex-1][i];
+  }
+  currentGameIndex -= 1;
+  makeNextGameButtonAppear();
+}
+
+const handleNextGameStateButton = () => {
+  console.log(buttons.length);
+  for (i=0; i<buttons.length; i++) {
+    console.log("previous Button");
+    console.log(gameStatesArray[currentGameIndex+1][i]);
+    buttons[i].innerHTML = gameStatesArray[currentGameIndex+1][i];
+  }
+  currentGameIndex += 1;
+  makeNextGameButtonAppear();
+}
 
 buttons.forEach(button => {
   button.addEventListener("click", (event) => {
@@ -146,7 +176,7 @@ buttons.forEach(button => {
     console.log(event);
     console.log(button.value);
     console.log(moveOrder);
-    if (event.target.innerHTML == "" && winner == false) //winner == false is added to prevent the next steps when a winner is already found.
+    if (event.target.innerHTML == "" && winner == false && currentGameIndex == gameStatesArray.length) //winner == false is added to prevent the next steps when a winner is already found. // currentGameIndex == gameStatesArray.length is to ensure that previous games are not clickable.
      {
       event.target.innerHTML = moveOrder;
       globalArray[button.value] = moveOrder;
@@ -156,5 +186,18 @@ buttons.forEach(button => {
   })
 })
 
-nextGamebutton.addEventListener("click", handleNextGameButton)
+nextGamebutton.addEventListener("click", handleNextGameButton);
 
+previousGameStateButton.addEventListener("click", (event) => {
+  console.log("previous");
+  if (currentGameIndex > 0) { //this is to ensure that handlePreviousGameStateButton is only called when there is a previous game-state.
+    handlePreviousGameStateButton();
+  }
+})
+
+nextGameStateButton.addEventListener("click", (event) => {
+  console.log("next");
+  if (currentGameIndex < gameStatesArray.length) { //this is to ensure that handleNextGameStateButton is only called when there is a next game-state.
+    handleNextGameStateButton();
+  }
+});

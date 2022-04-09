@@ -1,23 +1,23 @@
 .score-count {
   margin: 2rem auto;
-  height: 8rem;
-  width: 45rem;
+  height: 5rem;
+  width: 35rem;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: center;
 
   &_section {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-around;
     height: 100%;
-    width: 30%;
+    width: 25%;
 
     &_heading {
       text-align: center;
       font-family: $font-primary;
       font-size: 1.5rem;
-      color: $color-secondary;
+      padding: 0.5rem;
     }
 
     &_score {
@@ -25,27 +25,21 @@
       text-align: center;
       font-family: $font-primary;
       font-size: 1.5rem;
-      color: $color-secondary;
     }
   }
 }
 
 .container {
   margin: 3rem auto;
-  // width: 800px;
-  // height: 800px;
-  width: 45rem;
-  height: 45rem;
+  width: 35rem;
+  height: 35rem;
   border: 2px solid $color-secondary;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
 
   &_button {
-    //  width: 15rem;
-    //  height: 15rem;
-    font-size: 8rem;
-    //  font-size: 100px;
+    font-size: 6rem;
     border: 2px solid $color-secondary;
     margin: 0;
   }
@@ -62,26 +56,6 @@
     text-align: center;
     font-family: $font-primary;
     font-size: 1.5rem;
-    color: $color-secondary;
   }
 }
 
-.container_button--winner {
-  background-color: green;
-}
-
-.next-game-button {
-  display: block;
-  margin: 3rem auto;
-  padding: 0.5rem;
-  height: 5rem;
-  width: 16rem;
-  border-radius: 0.5rem;
-  background-color: lightblue;
-  font-family: $font-primary;
-  font-size: 3rem;
-}
-
-.next-game-button--disappear {
-  display: none;
-}

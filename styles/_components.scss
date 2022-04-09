@@ -1,0 +1,19 @@
+.container_button--winner {
+  background-color: $color-tertiary;
+}
+
+.next-game-button {
+  display: block;
+  margin: 3rem auto;
+  padding: 0.5rem;
+  height: 3.5rem;
+  width: 12rem;
+  border-radius: 0.5rem;
+  background-color: $color-accent;
+  font-family: $font-primary;
+  font-size: 2rem;
+}
+
+.next-game-button--disappear {
+  display: none;
+}

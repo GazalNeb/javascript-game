@@ -2,7 +2,7 @@
 
 let globalArray = ["", "", "", "", "", "", "", "", ""]
 
-//a global variable that stores either 'X' or 'O'. It changes after every move to register the change of player.
+//a global variable that stores either "X" or "O". It changes after every move to register the change of player.
 let moveOrder = "X"
 
 // an array of arrays, each storing integer values of possible winner combination indexes of globalArray.
@@ -31,7 +31,7 @@ let currentGameIndex = 0;
 // a variable to save the single winner combination array that wins in a game
 let winnerCombination = [];
 
-// an array to save the final globalArray state after each game; this is done to facilitate return to previous games.
+// an array to save the final globalArray state after each game; this is done to facilitate return to previous game-states.
 let previousGameStatesArray = [];
 
 //an array to store winner combination indexes of previous games; this is done to display the winning streaks of previous games.
@@ -80,10 +80,10 @@ const checkGameCount = () => {
   console.log(player1Wins, player2Wins, drawCount, gameCount);
   player1WinsButton.innerHTML = `${player1Wins}`;
   player2WinsButton.innerHTML = `${player2Wins}`;
-  drawButton.innerHTML = `${drawCount}`; //this displays the score on the page
+  drawButton.innerHTML = `${drawCount}`; //this displays the score on the page.
 }
 
-//method for storing the game-states and winner combinations after each game.
+//method for storing the game-states and winner combination indexes after each game.
 const storeGameState = () => {
     previousGameStatesArray[previousGameStatesArray.length] = globalArray.slice();
     console.log(previousGameStatesArray);
@@ -130,7 +130,7 @@ const handleNextGameButton = () => {
 //method for checking the game-end if there is no winner.
 const checkGameEnd = () => {
   // console.log(globalArray);
-  if (!globalArray.includes("")) {
+  if (!globalArray.includes("")) { //this checks if the globalArray is completely full before taking the next steps.
     console.log("pass");
     checkGameCount();
     makeNextGameButtonAppear();
@@ -142,7 +142,8 @@ const checkGameEnd = () => {
 const checkWinner = () => {
   console.log("winner start" );
   for (i = 0; i < winnerCombinationsArray.length; i++) {
-    if (globalArray[winnerCombinationsArray[i][0]] == globalArray[winnerCombinationsArray[i][1]] && globalArray[winnerCombinationsArray[i][0]] == globalArray[winnerCombinationsArray[i][2]] && globalArray[winnerCombinationsArray[i][0]] != "") {
+    if (globalArray[winnerCombinationsArray[i][0]] == globalArray[winnerCombinationsArray[i][1]] && globalArray[winnerCombinationsArray[i][0]] == globalArray[winnerCombinationsArray[i][2]] && globalArray[winnerCombinationsArray[i][0]] != "") //this checks if certain indexes of the globalArray, corresponding to the potential winning index numbers saved in winnerCombinationsArray, contain the same value, and that value is not an empty string (so it's either "X" or "O").
+    {
       console.log("winner " + winnerCombinationsArray[i]);
       winnerCombination = winnerCombinationsArray[i].slice();
       console.log(winnerCombination + " out")
@@ -164,12 +165,12 @@ const handlePreviousGameStateButton = () => {
   for (i=0; i<buttons.length; i++) {
     console.log("previous Button");
     console.log(previousGameStatesArray[currentGameIndex-1][i]);
-    buttons[i].innerHTML = previousGameStatesArray[currentGameIndex-1][i];
+    buttons[i].innerHTML = previousGameStatesArray[currentGameIndex-1][i]; //this changes the innerHTML of the buttons grid to that of the previous game-state.
   }
   for (i=0; i<previousGameWinnerCombinations[currentGameIndex-1].length; i++) {
-  buttons[previousGameWinnerCombinations[currentGameIndex-1][i]].classList.add("container_button--winner"); //this will ensure the winning buttons are highlighted when the previous game-state is displayed
+  buttons[previousGameWinnerCombinations[currentGameIndex-1][i]].classList.add("container_button--winner"); //this ensures the winning buttons are highlighted when the previous game-state is displayed
   }
-  currentGameIndex -= 1;
+  currentGameIndex -= 1; //this ensures the game index corresponds to the game-state being displayed.
   makeNextGameButtonAppear();
 }
 
@@ -179,12 +180,12 @@ const handleNextGameStateButton = () => {
   for (i=0; i<buttons.length; i++) {
     console.log("previous Button");
     console.log(previousGameStatesArray[currentGameIndex+1][i]);
-    buttons[i].innerHTML = previousGameStatesArray[currentGameIndex+1][i];
+    buttons[i].innerHTML = previousGameStatesArray[currentGameIndex+1][i];//this changes the innerHTML of the buttons grid to that of the next game-state.
   }
   for (i=0; i<previousGameWinnerCombinations[currentGameIndex+1].length; i++) {
-    buttons[previousGameWinnerCombinations[currentGameIndex+1][i]].classList.add("container_button--winner"); //this will ensure the winning buttons are highlighted when the next game-state is displayed
+    buttons[previousGameWinnerCombinations[currentGameIndex+1][i]].classList.add("container_button--winner"); //this ensures the winning buttons are highlighted when the next game-state is displayed.
     }
-  currentGameIndex += 1;
+  currentGameIndex += 1; //this ensures the game index corresponds to the game-state being displayed.
   makeNextGameButtonAppear();
 }
 
@@ -194,13 +195,13 @@ buttons.forEach(button => {
     console.log(event);
     console.log(button.value);
     console.log(moveOrder);
-    if (event.target.innerHTML == "" && winner == false && currentGameIndex == previousGameStatesArray.length) //winner == false is added to prevent the next steps when a winner is already found. // currentGameIndex == previousGameStatesArray.length is to ensure that previous games are not clickable.
+    if (event.target.innerHTML == "" && winner == false && currentGameIndex == previousGameStatesArray.length) //this if statement is to ensure that only empty buttons get assigned innerHTML value. winner == false is added to prevent the next steps when a winner is already found. currentGameIndex == previousGameStatesArray.length is to ensure that previous games are not clickable.
      {
       event.target.innerHTML = moveOrder;
       globalArray[button.value] = moveOrder;
       checkWinner();
       changeMoveOrder();
-    } //this if statement is to ensure that only empty buttons get assigned innerHTML value
+    } 
   })
 })
 

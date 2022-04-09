@@ -102,17 +102,23 @@ const makeNextGameButtonAppear = () => {
   // nextGamebutton.style.display = "block";
 }
 
-//method for when nextGameButton is clicked; it resets global variables, makes the grid buttons empty, and removes the nextGameButton display. 
-const handleNextGameButton = () => {
-  globalArray = ["", "", "", "", "", "", "", "", ""];
-  winner = false;
-  winnerCombination = [];
-  moveOrder = "X";
+
+//method for making main-grid empty
+const resetGrid = () => {
   buttons.forEach(button => {
     button.innerHTML = "";
     // nextGamebutton.style.display = "none";
     button.classList.remove("container_button--winner");
   })
+}
+
+//method for when nextGameButton is clicked; it resets global variables, makes the grid buttons empty, increases the gameIndex by 1, and removes the nextGameButton display. 
+const handleNextGameButton = () => {
+  globalArray = ["", "", "", "", "", "", "", "", ""];
+  winner = false;
+  winnerCombination = [];
+  moveOrder = "X";
+  resetGrid();
   currentGameIndex += 1;
   nextGamebutton.classList.add("next-game-button--disappear");
 }
@@ -149,6 +155,7 @@ const checkWinner = () => {
 }
 
 const handlePreviousGameStateButton = () => {
+  resetGrid();
   console.log(buttons.length);
   for (i=0; i<buttons.length; i++) {
     console.log("previous Button");
@@ -160,6 +167,7 @@ const handlePreviousGameStateButton = () => {
 }
 
 const handleNextGameStateButton = () => {
+  resetGrid();
   console.log(buttons.length);
   for (i=0; i<buttons.length; i++) {
     console.log("previous Button");

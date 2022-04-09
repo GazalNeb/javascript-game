@@ -51,6 +51,21 @@
   }
 }
 
+.game-state {
+  margin: 2rem auto;
+  display: flex;
+  justify-content: space-evenly;
+
+  &_button {
+    height: 3rem;
+    padding: 0.5rem;
+    text-align: center;
+    font-family: $font-primary;
+    font-size: 1.5rem;
+    color: $color-secondary;
+  }
+}
+
 .container_button--winner {
   background-color: green;
 }

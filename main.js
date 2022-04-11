@@ -16,6 +16,7 @@ let winnerCombinationsArray = [
   [0, 4, 8],
   [2, 4, 6]
 ];
+
 // a boolean variable to document if there is a winner
 let winner = false;
 
@@ -37,6 +38,7 @@ let previousGameStatesArray = [];
 //an array to store winner combination indexes of previous games; this is done to display the winning streaks of previous games.
 let previousGameWinnerCombinations = [];
 
+//DOM elements
 const buttons = document.querySelectorAll(".container_button");
 console.log(buttons);
 
@@ -59,6 +61,7 @@ const changeMoveOrder = () => {
     moveOrder = "X";
   }
 }
+
 //method for when there is a winner
 const handleWinner = () => {
   checkGameCount();
@@ -80,7 +83,7 @@ const checkGameCount = () => {
   console.log(player1Wins, player2Wins, drawCount, gameCount);
   player1WinsButton.innerHTML = `${player1Wins}`;
   player2WinsButton.innerHTML = `${player2Wins}`;
-  drawButton.innerHTML = `${drawCount}`; //this displays the score on the page.
+  drawButton.innerHTML = `${drawCount}`; //this displays the scores on the page.
 }
 
 //method for storing the game-states and winner combination indexes after each game.
@@ -103,7 +106,6 @@ const highlightWinnerCombination = () => {
 //method for displaying nextGameButton 
 const makeNextGameButtonAppear = () => {
   nextGamebutton.classList.remove("next-game-button--disappear");
-  // nextGamebutton.style.display = "block";
 }
 
 
@@ -111,7 +113,6 @@ const makeNextGameButtonAppear = () => {
 const resetGrid = () => {
   buttons.forEach(button => {
     button.innerHTML = "";
-    // nextGamebutton.style.display = "none";
     button.classList.remove("container_button--winner");
   })
 }
@@ -129,7 +130,6 @@ const handleNextGameButton = () => {
 
 //method for checking the game-end if there is no winner.
 const checkGameEnd = () => {
-  // console.log(globalArray);
   if (!globalArray.includes("")) { //this checks if the globalArray is completely full before taking the next steps.
     console.log("pass");
     checkGameCount();
@@ -140,7 +140,7 @@ const checkGameEnd = () => {
 
 //method for checking winner
 const checkWinner = () => {
-  console.log("winner start" );
+  console.log("winner start");
   for (i = 0; i < winnerCombinationsArray.length; i++) {
     if (globalArray[winnerCombinationsArray[i][0]] == globalArray[winnerCombinationsArray[i][1]] && globalArray[winnerCombinationsArray[i][0]] == globalArray[winnerCombinationsArray[i][2]] && globalArray[winnerCombinationsArray[i][0]] != "") //this checks if certain indexes of the globalArray, corresponding to the potential winning index numbers saved in winnerCombinationsArray, contain the same value, and that value is not an empty string (so it's either "X" or "O").
     {
@@ -149,7 +149,6 @@ const checkWinner = () => {
       console.log(winnerCombination + " out")
       winner = true;
       break;
-      // return winnerCombinationsArray[i];
     }
   }
   if (winner == true) {
@@ -189,6 +188,7 @@ const handleNextGameStateButton = () => {
   makeNextGameButtonAppear();
 }
 
+//Event listeners
 buttons.forEach(button => {
   button.addEventListener("click", (event) => {
     console.log(button);

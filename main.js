@@ -18,7 +18,10 @@ let winnerCombinationsArray = [
 ];
 
 // a boolean variable to document if there is a winner
-let winner = false;
+let isWinner = false;
+
+//a variable to store winning player
+let winningPlayer = "";
 
 //variables for game count, player wins, and draw count
 let gameCount = 0;
@@ -48,6 +51,7 @@ nextGamebutton.classList.add("next-game-button--disappear"); //this ensures the 
 const player1WinsButton = document.querySelector(".P1-score");
 const player2WinsButton = document.querySelector(".P2-score");
 const drawButton = document.querySelector(".draw-score");
+const gameOutcomeMessage = document.querySelector(".game-outcome-message");
 
 const previousGameStateButton = document.querySelector(".game-state_previous");
 const nextGameStateButton = document.querySelector(".game-state_next");
@@ -66,15 +70,33 @@ const changeMoveOrder = () => {
 const handleWinner = () => {
   checkGameCount();
   highlightWinnerCombination();
+  displayGameOutcomeMessage();
   makeNextGameButtonAppear();
   storeGameState();
 }
 
+//method to display game outcome
+const displayGameOutcomeMessage = () => {
+  if (moveOrder == "X" && isWinner == true) {
+    winningPlayer = "Player 1";
+    gameOutcomeMessage.innerHTML = `${winningPlayer} wins the game`;
+    
+  }
+  else if (moveOrder == "O" && isWinner == true) {
+    winningPlayer = "Player 2";
+    gameOutcomeMessage.innerHTML = `${winningPlayer} wins the game`;
+  }
+  else {
+    gameOutcomeMessage.innerHTML = `It's a Draw!`;
+  }
+  gameOutcomeMessage.classList.remove("game-outcome-message--disappear");
+}
+
 //method for checking player wins and number of games.
 const checkGameCount = () => {
-  if (moveOrder == "X" && winner == true) {
+  if (moveOrder == "X" && isWinner == true) {
     player1Wins += 1;
-  } else if (moveOrder == "O" && winner == true) {
+  } else if (moveOrder == "O" && isWinner == true) {
     player2Wins += 1;
   } else {
     drawCount += 1;
@@ -120,22 +142,21 @@ const resetGrid = () => {
 //method for when nextGameButton is clicked; it resets global variables, makes the grid buttons empty, increases the gameIndex by 1, and removes the nextGameButton display. 
 const handleNextGameButton = () => {
   globalArray = ["", "", "", "", "", "", "", "", ""];
-  winner = false;
+  isWinner = false;
   winnerCombination = [];
   moveOrder = "X";
   resetGrid();
   currentGameIndex += 1;
   nextGamebutton.classList.add("next-game-button--disappear");
+  gameOutcomeMessage.classList.add("game-outcome-message--disappear");
 }
 
-//method for checking the game-end if there is no winner.
-const checkGameEnd = () => {
-  if (!globalArray.includes("")) { //this checks if the globalArray is completely full before taking the next steps.
-    console.log("pass");
+//method for handling the game-end if there is no winner.
+const handleGameEnd = () => {
     checkGameCount();
+    displayGameOutcomeMessage();
     makeNextGameButtonAppear();
     storeGameState();
-  }
 }
 
 //method for checking winner
@@ -147,15 +168,17 @@ const checkWinner = () => {
       console.log("winner " + winnerCombinationsArray[i]);
       winnerCombination = winnerCombinationsArray[i].slice();
       console.log(winnerCombination + " out")
-      winner = true;
+      isWinner = true;
       break;
     }
   }
-  if (winner == true) {
+  if (isWinner == true) {
     handleWinner();
     return;
   }
-    checkGameEnd();
+   else if (!globalArray.includes("")) { //this checks if the globalArray is completely full before declaring a draw.
+     handleGameEnd();
+   }
 }
 
 const handlePreviousGameStateButton = () => {
@@ -188,6 +211,8 @@ const handleNextGameStateButton = () => {
   makeNextGameButtonAppear();
 }
 
+
+
 //Event listeners
 buttons.forEach(button => {
   button.addEventListener("click", (event) => {
@@ -195,7 +220,7 @@ buttons.forEach(button => {
     console.log(event);
     console.log(button.value);
     console.log(moveOrder);
-    if (event.target.innerHTML == "" && winner == false && currentGameIndex == previousGameStatesArray.length) //this if statement is to ensure that only empty buttons get assigned innerHTML value. winner == false is added to prevent the next steps when a winner is already found. currentGameIndex == previousGameStatesArray.length is to ensure that previous games are not clickable.
+    if (event.target.innerHTML == "" && isWinner == false && currentGameIndex == previousGameStatesArray.length) //this if statement is to ensure that only empty buttons get assigned innerHTML value. isWinner == false is added to prevent the next steps when a winner is already found. currentGameIndex == previousGameStatesArray.length is to ensure that previous games are not clickable.
      {
       event.target.innerHTML = moveOrder;
       globalArray[button.value] = moveOrder;

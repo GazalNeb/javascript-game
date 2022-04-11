@@ -17,3 +17,21 @@
 .next-game-button--disappear {
   display: none;
 }
+
+.game-outcome-message {
+  display: block;
+  margin: 3rem auto;
+  padding: 0.5rem;
+  height: 3.5rem;
+  width: 20rem;
+  border-radius: 0.5rem;
+  border: 2px solid $color-secondary;
+  background-color: $color-accent;
+  font-family: $font-primary;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.game-outcome-message--disappear {
+  display: none;
+}

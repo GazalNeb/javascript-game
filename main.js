@@ -70,8 +70,12 @@ const nextGameStateButton = document.querySelector(".game-state_next");
 const handleGameStart = () => {
   inputNamesSection.classList.add("input-names--disappear");
   mainGameSection.classList.remove("main-game--disappear");
-  player1ScoreHeading.innerHTML = `${player1NameInput.value} Wins`;
+  if (player1NameInput.value) {
+  player1ScoreHeading.innerHTML = `${player1NameInput.value} Wins`; //this if statement is added to ensure that innerHTML is updated only when users have entered a name.
+  }
+  if (player2NameInput.value) {
   player2ScoreHeading.innerHTML = `${player2NameInput.value} Wins`;
+  }
 }
 
 //method for changing move order
@@ -95,13 +99,23 @@ const handleWinner = () => {
 //method to display game outcome
 const displayGameOutcomeMessage = () => {
   if (moveOrder == "X" && isWinner == true) {
+    if (player1NameInput.value) {
     winningPlayer = player1NameInput.value;
-    gameOutcomeMessage.innerHTML = `${winningPlayer} wins the game`;
+    }
+    else {
+      winningPlayer = "Player-1"
+    }
+    gameOutcomeMessage.innerHTML = `${winningPlayer} wins the game!`;
     
   }
   else if (moveOrder == "O" && isWinner == true) {
-    winningPlayer = player2NameInput.value;
-    gameOutcomeMessage.innerHTML = `${winningPlayer} wins the game`;
+    if (player2NameInput.value) {
+      winningPlayer = player2NameInput.value;
+      }
+      else {
+        winningPlayer = "Player-2"
+      }
+    gameOutcomeMessage.innerHTML = `${winningPlayer} wins the game!`;
   }
   else {
     gameOutcomeMessage.innerHTML = `It's a Draw!`;
@@ -140,7 +154,6 @@ const highlightWinnerCombination = () => {
     buttons[winnerCombination[i]].classList.add("container_button--winner");
   } 
 }
-
 
 //method for displaying nextGameButton 
 const makeNextGameButtonAppear = () => {

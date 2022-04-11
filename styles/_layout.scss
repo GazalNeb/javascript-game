@@ -23,6 +23,19 @@
   }
 }
 
+.back-to-input-page {
+  margin: 0.5rem 0.5rem;
+  height: 2.5rem;
+  width: 4rem;
+  padding: 0.5rem;
+  text-align: center;
+  font-family: $font-primary;
+  background-color: $color-accent;
+  font-size: 1.2rem;
+  border-radius: 0.2rem;
+  border: 2px solid $color-secondary;
+}
+
 .score-count {
   margin: 2rem auto;
   height: 5rem;

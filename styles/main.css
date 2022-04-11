@@ -27,6 +27,19 @@
   border: 2px solid #4B4747;
 }
 
+.back-to-input-page {
+  margin: 0.5rem 0.5rem;
+  height: 2.5rem;
+  width: 4rem;
+  padding: 0.5rem;
+  text-align: center;
+  font-family: "sans-serif";
+  background-color: lightblue;
+  font-size: 1.2rem;
+  border-radius: 0.2rem;
+  border: 2px solid #4B4747;
+}
+
 .score-count {
   margin: 2rem auto;
   height: 5rem;
@@ -107,11 +120,10 @@
   display: block;
   margin: 3rem auto;
   padding: 0.5rem;
-  height: 3.5rem;
   width: 20rem;
   border-radius: 0.5rem;
-  border: 2px solid #4B4747;
-  background-color: lightblue;
+  border: 2px solid #d60000;
+  color: #d60000;
   font-family: "sans-serif";
   font-size: 2rem;
   text-align: center;

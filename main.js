@@ -47,8 +47,13 @@ const inputNamesSection = document.querySelector(".input-names");
 const mainGameSection = document.querySelector(".main-game");
 const startButton = document.querySelector(".input-names_start-button");
 
-const buttons = document.querySelectorAll(".container_button");
+const player1NameInput = document.querySelector("#input-names_input-player1");
+const player2NameInput = document.querySelector("#input-names_input-player2");
 
+const player1ScoreHeading = document.querySelector(".score-count_section_heading-P1");
+const player2ScoreHeading = document.querySelector(".score-count_section_heading-P2");
+
+const buttons = document.querySelectorAll(".container_button");
 const nextGamebutton = document.querySelector(".next-game-button");
 
 const player1WinsButton = document.querySelector(".P1-score");
@@ -56,9 +61,6 @@ const player2WinsButton = document.querySelector(".P2-score");
 const drawButton = document.querySelector(".draw-score");
 
 const gameOutcomeMessage = document.querySelector(".game-outcome-message");
-
-const player1NameInput = document.querySelector("#input-names_input-player1");
-const player2NameInput = document.querySelector("#input-names_input-player1");
 
 const previousGameStateButton = document.querySelector(".game-state_previous");
 const nextGameStateButton = document.querySelector(".game-state_next");
@@ -68,6 +70,8 @@ const nextGameStateButton = document.querySelector(".game-state_next");
 const handleGameStart = () => {
   inputNamesSection.classList.add("input-names--disappear");
   mainGameSection.classList.remove("main-game--disappear");
+  player1ScoreHeading.innerHTML = `${player1NameInput.value} Wins`;
+  player2ScoreHeading.innerHTML = `${player2NameInput.value} Wins`;
 }
 
 //method for changing move order

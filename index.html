@@ -9,8 +9,17 @@
   <link rel="stylesheet" href="./styles/main.css">
 </head>
 
-<body>
-  <section>
+<body> 
+  <section class="input-names">
+    <h2 class="input-names_heading">Please enter the following information</h2>
+    <label for="input-names_input-player1">Player 1 Name</label>
+    <input type="text" class="input-names_input" id="input-names_input-player1">
+    <label for="input-names_input-player2">Player 2 Name</label>
+    <input type="text" class="input-names_input" id="input-names_input-player2">
+    <button class="input-names_start-button">Start</button>
+  </section>
+
+  <section class="main-game main-game--disappear">
     <p class="game-outcome-message game-outcome-message--disappear"></p>
     <button class="next-game-button next-game-button--disappear">Next Game</button>
     <div class="score-count">
@@ -44,6 +53,6 @@
     </div>
   </section>
   <script src="./main.js"></script>
-</body>
-
-</html>
+  </body>
+  
+  </html>

@@ -4,6 +4,29 @@
   box-sizing: border-box;
 }
 
+.input-names {
+  margin: 5rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  text-align: center;
+}
+.input-names_heading {
+  font-size: 1.5rem;
+}
+.input-names_start-button {
+  height: 2.5rem;
+  width: 4rem;
+  padding: 0.5rem;
+  text-align: center;
+  font-family: "sans-serif";
+  background-color: lightblue;
+  font-size: 1.2rem;
+  border-radius: 0.2rem;
+  border: 2px solid #4B4747;
+}
+
 .score-count {
   margin: 2rem auto;
   height: 5rem;
@@ -95,5 +118,13 @@
 }
 
 .game-outcome-message--disappear {
+  display: none;
+}
+
+.input-names--disappear {
+  display: none;
+}
+
+.main-game--disappear {
   display: none;
 }

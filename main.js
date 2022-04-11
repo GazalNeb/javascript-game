@@ -42,20 +42,33 @@ let previousGameStatesArray = [];
 let previousGameWinnerCombinations = [];
 
 //DOM elements
+
+const inputNamesSection = document.querySelector(".input-names");
+const mainGameSection = document.querySelector(".main-game");
+const startButton = document.querySelector(".input-names_start-button");
+
 const buttons = document.querySelectorAll(".container_button");
-console.log(buttons);
 
 const nextGamebutton = document.querySelector(".next-game-button");
-nextGamebutton.classList.add("next-game-button--disappear"); //this ensures the button is not visible at the beginning of the game.
 
 const player1WinsButton = document.querySelector(".P1-score");
 const player2WinsButton = document.querySelector(".P2-score");
 const drawButton = document.querySelector(".draw-score");
+
 const gameOutcomeMessage = document.querySelector(".game-outcome-message");
+
+const player1NameInput = document.querySelector("#input-names_input-player1");
+const player2NameInput = document.querySelector("#input-names_input-player1");
 
 const previousGameStateButton = document.querySelector(".game-state_previous");
 const nextGameStateButton = document.querySelector(".game-state_next");
 
+
+//method to handle the start of the game after the name inputs.
+const handleGameStart = () => {
+  inputNamesSection.classList.add("input-names--disappear");
+  mainGameSection.classList.remove("main-game--disappear");
+}
 
 //method for changing move order
 const changeMoveOrder = () => {
@@ -78,12 +91,12 @@ const handleWinner = () => {
 //method to display game outcome
 const displayGameOutcomeMessage = () => {
   if (moveOrder == "X" && isWinner == true) {
-    winningPlayer = "Player 1";
+    winningPlayer = player1NameInput.value;
     gameOutcomeMessage.innerHTML = `${winningPlayer} wins the game`;
     
   }
   else if (moveOrder == "O" && isWinner == true) {
-    winningPlayer = "Player 2";
+    winningPlayer = player2NameInput.value;
     gameOutcomeMessage.innerHTML = `${winningPlayer} wins the game`;
   }
   else {
@@ -214,6 +227,9 @@ const handleNextGameStateButton = () => {
 
 
 //Event listeners
+
+startButton.addEventListener("click", handleGameStart);
+
 buttons.forEach(button => {
   button.addEventListener("click", (event) => {
     console.log(button);

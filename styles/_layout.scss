@@ -1,3 +1,28 @@
+.input-names {
+  margin: 5rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  text-align: center;
+
+  &_heading {
+    font-size: 1.5rem;
+  }
+
+  &_start-button {
+    height: 2.5rem;
+    width: 4rem;
+    padding: 0.5rem;
+    text-align: center;
+    font-family: $font-primary;
+    background-color: $color-accent;
+    font-size: 1.2rem;
+    border-radius: 0.2rem;
+    border: 2px solid $color-secondary;
+  }
+}
+
 .score-count {
   margin: 2rem auto;
   height: 5rem;
@@ -58,4 +83,6 @@
     font-size: 1.5rem;
   }
 }
+
+
 

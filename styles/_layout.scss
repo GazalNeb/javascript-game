@@ -25,7 +25,6 @@
 
 .score-count {
   margin: 2rem auto;
-  height: 5rem;
   width: 35rem;
   display: flex;
   justify-content: space-around;
@@ -50,7 +49,7 @@
     }
 
     &_score {
-      height: 3rem;
+      height: 2.5rem;
       text-align: center;
       font-family: $font-primary;
       font-size: 1.5rem;

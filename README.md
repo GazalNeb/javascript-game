@@ -13,4 +13,8 @@ When a player gets a three-box streak, the winning boxes are highlighted in gree
 
 The UI also includes the count of Player 1 and 2 wins and game draws on the top of the board. The user can also click on the previous and next buttons at the bottom of the page to go back and forth the previous games. The previous games appear in the same format as a live game, with the winning boxes highlighted in green. However, they cannot be interacted with or changed by clicking on the boxes.
 
+<br/>
+
+<img src="./images/game-screenshot.JPG" alt="screenshot of my game" width="425px" height = "600px">
+
 

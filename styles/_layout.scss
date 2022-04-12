@@ -23,19 +23,6 @@
   }
 }
 
-.back-to-input-button {
-  margin: 0.5rem 0.5rem;
-  height: 2.5rem;
-  width: 4rem;
-  padding: 0.5rem;
-  text-align: center;
-  font-family: $font-primary;
-  background-color: $color-accent;
-  font-size: 1.2rem;
-  border-radius: 0.2rem;
-  border: 2px solid $color-secondary;
-}
-
 .score-count {
   margin: 2rem auto;
   height: 5rem;
@@ -65,6 +52,10 @@
       font-size: 1.5rem;
     }
   }
+
+  @media screen and (max-width: 500px) {
+    width: 25rem;
+  }
 }
 
 .container {
@@ -80,6 +71,15 @@
     font-size: 6rem;
     border: 2px solid $color-secondary;
     margin: 0;
+
+    @media screen and (max-width: 500px) {
+      font-size: 5rem;
+    }
+  }
+
+  @media screen and (max-width: 500px) {
+    width: 25rem;
+    height: 25rem;
   }
 }
 

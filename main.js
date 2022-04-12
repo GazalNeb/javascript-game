@@ -46,6 +46,7 @@ let previousGameWinnerCombinations = [];
 const inputNamesSection = document.querySelector(".input-names");
 const mainGameSection = document.querySelector(".main-game");
 const startButton = document.querySelector(".input-names_start-button");
+const backButton = document.querySelector(".back-to-input-button");
 
 const player1NameInput = document.querySelector("#input-names_input-player1");
 const player2NameInput = document.querySelector("#input-names_input-player2");
@@ -76,6 +77,12 @@ const handleGameStart = () => {
   if (player2NameInput.value) {
   player2ScoreHeading.innerHTML = `${player2NameInput.value} Wins`;
   }
+}
+
+//method for going back to the names input page
+const handleBackButton = () => {
+  inputNamesSection.classList.remove("input-names--disappear");
+  mainGameSection.classList.add("main-game--disappear");
 }
 
 //method for changing move order
@@ -246,6 +253,7 @@ const handleNextGameStateButton = () => {
 //Event listeners
 
 startButton.addEventListener("click", handleGameStart);
+backButton.addEventListener("click", handleBackButton);
 
 buttons.forEach(button => {
   button.addEventListener("click", (event) => {

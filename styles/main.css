@@ -47,11 +47,6 @@
   font-size: 1.5rem;
   padding: 0.5rem;
 }
-@media screen and (max-width: 500px) {
-  .score-count_section_heading {
-    font-size: 1rem;
-  }
-}
 .score-count_section_score {
   height: 2.5rem;
   text-align: center;
